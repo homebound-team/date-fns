@@ -1,5 +1,5 @@
 {
-  "name": "date-fns",
+  "name": "@homebound/date-fns",
   "version": "DON'T CHANGE; IT'S SET AUTOMATICALLY DURING DEPLOYMENT; ALSO, USE YARN FOR DEVELOPMENT",
   "sideEffects": false,
   "contributors": [
