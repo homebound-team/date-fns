@@ -53,6 +53,19 @@ merge_upstream_master() {
   git push origin master --follow-tags
 }
 
+build() {
+  yarn install
+
+  # Build types
+  ./scripts/build/build.sh
+  git add -a
+  git commit -m "generate and commit types"
+
+  # Then build the NPM package
+  env VERSION=v"$LATEST_UPSTREAM_VERSION" ./scripts/release/writeVersion.js
+  env VERSION=v"$LATEST_UPSTREAM_VERSION" PACKAGE_OUTPUT_PATH="$BUILD_DIR" ./scripts/build/package.sh
+}
+
 create_patch() {
   mkdir -p "$PATCH_DIR"
   cd "$PATCH_DIR"
@@ -113,9 +126,7 @@ git merge --no-commit origin/"$BRANCH_TO_MERGE"
 git push origin "homebound-patch-v$NEW_PATCH_PACKAGE_VERSION"
 
 echo "Building..."
-yarn install
-env VERSION=v"$LATEST_UPSTREAM_VERSION" ./scripts/release/writeVersion.js
-env VERSION=v"$LATEST_UPSTREAM_VERSION" PACKAGE_OUTPUT_PATH="$BUILD_DIR" ./scripts/build/package.sh
+build
 
 echo "Creating patch..."
 create_patch "$LATEST_UPSTREAM_VERSION"
