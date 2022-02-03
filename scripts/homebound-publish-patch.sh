@@ -99,7 +99,7 @@ git checkout "v$LATEST_UPSTREAM_VERSION"
 git checkout -b "homebound-patch-v$LATEST_UPSTREAM_VERSION"
 
 echo "Merging $BRANCH_TO_MERGE..."
-git merge --no-commit "$BRANCH_TO_MERGE"
+git merge --no-commit origin/"$BRANCH_TO_MERGE"
 
 echo "Building..."
 yarn install
