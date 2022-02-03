@@ -31,5 +31,5 @@ jobs:
           fingerprints:
             - '92:4f:71:a8:fd:a2:99:e1:87:13:0e:7e:b5:ec:4e:a2'
       - checkout
-      - run: 'echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> .npmrc'
+      - run: 'echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> $HOME/.npmrc'
       - run: ./scripts/homebound-publish-patch.sh improved-business-days
