@@ -66,7 +66,7 @@ and other docs.
 
 ## Homebound Fork
 
-This is Homebound's fork of `date-fns`. We forked this repository to extend the functionality of the `businessDate`
+This is Homebound's fork of `date-fns`. We forked this repository to extend the functionality of the `businessDays`
 functions. Our plan is to PR these improvements back to the mainstream project. However, in the meantime, we have
 logic to publish a `.patch` file to layer this functionality on top of the upstream `date-fns` package via the
 [`patch-package` project](https://github.com/ds300/patch-package).
