@@ -87,7 +87,8 @@ EOL
   mv -f "$BUILD_DIR" "$PATCH_DIR/node_modules/"
   npx patch-package date-fns
 
-  npm publish
+  # TODO: remove dry run flag
+  npm publish --dry-run
 }
 
 echo "Merging upstream date-fns master branch to our fork..."
@@ -101,6 +102,7 @@ echo "Merging $BRANCH_TO_MERGE..."
 git merge --no-commit "$BRANCH_TO_MERGE"
 
 echo "Building..."
+yarn install
 env VERSION=v"$LATEST_UPSTREAM_VERSION" ./scripts/release/writeVersion.js
 env VERSION=v"$LATEST_UPSTREAM_VERSION" PACKAGE_OUTPUT_PATH="$BUILD_DIR" ./scripts/build/package.sh
 
