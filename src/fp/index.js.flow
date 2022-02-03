@@ -82,6 +82,14 @@ type CurriedFn4<A, B, C, D, R> = <A>(
 declare module.exports: {
   add: CurriedFn2<Duration, Date | number, Date>,
   addBusinessDays: CurriedFn2<number, Date | number, Date>,
+  addBusinessDaysWithOptions: CurriedFn3<
+    {
+      businessDays?: number[],
+    },
+    number,
+    Date | number,
+    Date
+  >,
   addDays: CurriedFn2<number, Date | number, Date>,
   addHours: CurriedFn2<number, Date | number, Date>,
   addISOWeekYears: CurriedFn2<number, Date | number, Date>,
@@ -645,6 +653,14 @@ declare module.exports: {
   startOfYear: CurriedFn1<Date | number, Date>,
   sub: CurriedFn2<Duration, Date | number, Date>,
   subBusinessDays: CurriedFn2<number, Date | number, Date>,
+  subBusinessDaysWithOptions: CurriedFn3<
+    {
+      businessDays?: number[],
+    },
+    number,
+    Date | number,
+    Date
+  >,
   subDays: CurriedFn2<number, Date | number, Date>,
   subHours: CurriedFn2<number, Date | number, Date>,
   subISOWeekYears: CurriedFn2<number, Date | number, Date>,

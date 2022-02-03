@@ -52,7 +52,13 @@ export type Day = 0 | 1 | 2 | 3 | 4 | 5 | 6
 declare module.exports: {
   add: (date: Date | number, duration: Duration) => Date,
 
-  addBusinessDays: (date: Date | number, amount: number) => Date,
+  addBusinessDays: (
+    date: Date | number,
+    amount: number,
+    options?: {
+      businessDays?: number[],
+    }
+  ) => Date,
 
   addDays: (date: Date | number, amount: number) => Date,
 
@@ -837,7 +843,13 @@ declare module.exports: {
 
   sub: (date: Date | number, duration: Duration) => Date,
 
-  subBusinessDays: (date: Date | number, amount: number) => Date,
+  subBusinessDays: (
+    date: Date | number,
+    amount: number,
+    options?: {
+      businessDays?: number[],
+    }
+  ) => Date,
 
   subDays: (date: Date | number, amount: number) => Date,
 

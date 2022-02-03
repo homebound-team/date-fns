@@ -2,6 +2,7 @@
 
 export { default as add } from './add/index'
 export { default as addBusinessDays } from './addBusinessDays/index'
+export { default as addBusinessDaysWithOptions } from './addBusinessDaysWithOptions/index'
 export { default as addDays } from './addDays/index'
 export { default as addHours } from './addHours/index'
 export { default as addISOWeekYears } from './addISOWeekYears/index'
@@ -238,6 +239,7 @@ export { default as startOfWeekYearWithOptions } from './startOfWeekYearWithOpti
 export { default as startOfYear } from './startOfYear/index'
 export { default as sub } from './sub/index'
 export { default as subBusinessDays } from './subBusinessDays/index'
+export { default as subBusinessDaysWithOptions } from './subBusinessDaysWithOptions/index'
 export { default as subDays } from './subDays/index'
 export { default as subHours } from './subHours/index'
 export { default as subISOWeekYears } from './subISOWeekYears/index'
