@@ -20,7 +20,7 @@ workflows:
           filters:
             branches:
               only:
-                - 'improved-business-days'
+                - homebound-patch-publish
 
 jobs:
   build:
@@ -29,6 +29,4 @@ jobs:
     steps:
       - checkout
       - run: 'echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> .npmrc'
-      - run: npm i -g yarn
-      - run: git checkout homebound-patch-publish
       - run: ./scripts/homebound-publish-patch.sh improved-business-days
