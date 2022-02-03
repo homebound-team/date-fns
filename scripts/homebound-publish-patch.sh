@@ -98,8 +98,7 @@ EOL
   mv -f "$BUILD_DIR" "$PATCH_DIR/node_modules/"
   npx patch-package date-fns
 
-  # TODO: remove dry run flag
-  npm publish --dry-run
+  npm publish
 }
 
 echo "Merging upstream date-fns master branch to our fork..."
