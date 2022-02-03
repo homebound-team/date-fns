@@ -63,6 +63,7 @@ create_patch() {
   "name": "${PATCH_PACKAGE_NAME}",
   "version": "${NEW_PATCH_PACKAGE_VERSION}",
   "repository": "https://github.com/homebound-team/date-fns",
+  "homepage": "https://github.com/homebound-team/date-fns/blob/homebound-patch-publish/README.md#using-homebounddate-fns-patch",
   "description": "Provides a patch file for date-fns. Intended for use with patch-package NPM package.",
   "scripts": {
     "postinstall": "bash ./scripts/copy-patch-to-installer.sh"

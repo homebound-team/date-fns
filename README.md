@@ -94,7 +94,7 @@ In either case, you trigger a release by running the [workflow in CircleCI](http
 The release process pulls the latest release tag, merges the `improved-business-days` branch and builds the TypeScript
 code. Then, it runs the `patch-package` process to produce a `.patch` file representing the changes.
 
-We publish the private NPM package, `@homebound/date-fns-patch` package for convenience. The versioning convention is
+We publish the NPM package `@homebound/date-fns-patch` for convenience. The versioning convention is
 `<upstream-version>-rc.<i>`. For instance, `2.28.0-rc.1` is the first patch we built against the upstream 2.28.0 version.
 Because we might publish several revisions against the same upstream version, we simply increment the `-rc.<i>` tag each
 time we release. For example, the third publish of the branch against the upstream 2.28.0 version will create
