@@ -19,6 +19,9 @@ fi
 LATEST_UPSTREAM_VERSION=$(npm view date-fns version)
 echo "The latest version of date-fns published to NPM is $LATEST_UPSTREAM_VERSION"
 
+# Given the current upstream version we're merging with, we look for the next appropriate version for our
+# @homebound/date-fns-patch package. This allows us to release multiple versions of our patch against the same upstream
+# version (e.g., 2.28.0-rc.1, 2.28.0-rc.2, etc.)
 get_patch_package_version() {
   local all_versions
   all_versions=$(npm view $PATCH_PACKAGE_NAME versions --json)
@@ -40,6 +43,8 @@ get_patch_package_version() {
 NEW_PATCH_PACKAGE_VERSION=$(get_patch_package_version)
 echo "We'll publish $PATCH_PACKAGE_NAME@$NEW_PATCH_PACKAGE_VERSION."
 
+# This function keeps our fork's `master` branch up-to-date with the upstream project. Our fork's `master` branch should
+# exactly represent `upstream`
 merge_upstream_master() {
   git remote add upstream https://github.com/date-fns/date-fns.git
   git fetch upstream --tags
@@ -52,6 +57,7 @@ create_patch() {
   mkdir -p "$PATCH_DIR"
   cd "$PATCH_DIR"
 
+  # Here, we scaffold out the @homebound/date-fns-patch NPM package
   cat >"$PATCH_DIR"/package.json <<EOL
 {
   "name": "${PATCH_PACKAGE_NAME}",
@@ -71,6 +77,8 @@ create_patch() {
 }
 EOL
 
+  # This script is what's responsible for copying the patch file into the consuming project. It's run in the
+  # `postinstall` NPM lifecycle script.
   mkdir "$PATCH_DIR"/scripts
   cat >"$PATCH_DIR"/scripts/copy-patch-to-installer.sh <<EOL
 #! /bin/bash
@@ -83,6 +91,8 @@ EOL
 
   npm i --ignore-scripts
 
+  # Now, we replace the upstream date-fns package with our transpiled branch code. This allows `patch-package` to
+  # produce the .patch file
   rm -fr "$PATCH_DIR/node_modules/date-fns"
   mv -f "$BUILD_DIR" "$PATCH_DIR/node_modules/"
   npx patch-package date-fns
