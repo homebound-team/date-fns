@@ -58,7 +58,7 @@ build() {
 
   # Build types
   ./scripts/build/build.sh
-  git add -a
+  git add -A
   git commit -m "generate and commit types"
 
   # Then build the NPM package
@@ -127,6 +127,7 @@ git push origin "homebound-patch-v$NEW_PATCH_PACKAGE_VERSION"
 
 echo "Building..."
 build
+git push origin "homebound-patch-v$NEW_PATCH_PACKAGE_VERSION"
 
 echo "Creating patch..."
 create_patch "$LATEST_UPSTREAM_VERSION"
