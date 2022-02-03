@@ -96,10 +96,11 @@ merge_upstream_master
 
 echo "Checking out version $LATEST_UPSTREAM_VERSION by tag..."
 git checkout "v$LATEST_UPSTREAM_VERSION"
-git checkout -b "homebound-patch-v$LATEST_UPSTREAM_VERSION"
+git checkout -b "homebound-patch-v$NEW_PATCH_PACKAGE_VERSION"
 
 echo "Merging $BRANCH_TO_MERGE..."
 git merge --no-commit origin/"$BRANCH_TO_MERGE"
+git push origin "homebound-patch-v$NEW_PATCH_PACKAGE_VERSION"
 
 echo "Building..."
 yarn install
