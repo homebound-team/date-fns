@@ -96,7 +96,14 @@ declare module 'date-fns' {
   function add(date: Date | number, duration: Duration): Date
   namespace add {}
 
-  function addBusinessDays(date: Date | number, amount: number): Date
+  function addBusinessDays(
+    date: Date | number,
+    amount: number,
+    options?: {
+      businessDays?: number[]
+      exceptions?: Record<string, boolean>
+    }
+  ): Date
   namespace addBusinessDays {}
 
   function addDays(date: Date | number, amount: number): Date
@@ -167,7 +174,11 @@ declare module 'date-fns' {
 
   function differenceInBusinessDays(
     dateLeft: Date | number,
-    dateRight: Date | number
+    dateRight: Date | number,
+    options?: {
+      businessDays?: number[]
+      exceptions?: Record<string, boolean>
+    }
   ): number
   namespace differenceInBusinessDays {}
 
@@ -1125,7 +1136,14 @@ declare module 'date-fns' {
   function sub(date: Date | number, duration: Duration): Date
   namespace sub {}
 
-  function subBusinessDays(date: Date | number, amount: number): Date
+  function subBusinessDays(
+    date: Date | number,
+    amount: number,
+    options?: {
+      businessDays?: number[]
+      exceptions?: Record<string, boolean>
+    }
+  ): Date
   namespace subBusinessDays {}
 
   function subDays(date: Date | number, amount: number): Date
@@ -4744,6 +4762,17 @@ declare module 'date-fns/fp' {
   const addBusinessDays: CurriedFn2<number, Date | number, Date>
   namespace addBusinessDays {}
 
+  const addBusinessDaysWithOptions: CurriedFn3<
+    {
+      exceptions?: Record<string, boolean>
+      businessDays?: number[]
+    },
+    number,
+    Date | number,
+    Date
+  >
+  namespace addBusinessDaysWithOptions {}
+
   const addDays: CurriedFn2<number, Date | number, Date>
   namespace addDays {}
 
@@ -4819,6 +4848,17 @@ declare module 'date-fns/fp' {
     number
   >
   namespace differenceInBusinessDays {}
+
+  const differenceInBusinessDaysWithOptions: CurriedFn3<
+    {
+      exceptions?: Record<string, boolean>
+      businessDays?: number[]
+    },
+    Date | number,
+    Date | number,
+    number
+  >
+  namespace differenceInBusinessDaysWithOptions {}
 
   const differenceInCalendarDays: CurriedFn2<
     Date | number,
@@ -5815,6 +5855,17 @@ declare module 'date-fns/fp' {
   const subBusinessDays: CurriedFn2<number, Date | number, Date>
   namespace subBusinessDays {}
 
+  const subBusinessDaysWithOptions: CurriedFn3<
+    {
+      exceptions?: Record<string, boolean>
+      businessDays?: number[]
+    },
+    number,
+    Date | number,
+    Date
+  >
+  namespace subBusinessDaysWithOptions {}
+
   const subDays: CurriedFn2<number, Date | number, Date>
   namespace subDays {}
 
@@ -5890,6 +5941,11 @@ declare module 'date-fns/fp/add' {
 declare module 'date-fns/fp/addBusinessDays' {
   import { addBusinessDays } from 'date-fns/fp'
   export default addBusinessDays
+}
+
+declare module 'date-fns/fp/addBusinessDaysWithOptions' {
+  import { addBusinessDaysWithOptions } from 'date-fns/fp'
+  export default addBusinessDaysWithOptions
 }
 
 declare module 'date-fns/fp/addDays' {
@@ -5985,6 +6041,11 @@ declare module 'date-fns/fp/daysToWeeks' {
 declare module 'date-fns/fp/differenceInBusinessDays' {
   import { differenceInBusinessDays } from 'date-fns/fp'
   export default differenceInBusinessDays
+}
+
+declare module 'date-fns/fp/differenceInBusinessDaysWithOptions' {
+  import { differenceInBusinessDaysWithOptions } from 'date-fns/fp'
+  export default differenceInBusinessDaysWithOptions
 }
 
 declare module 'date-fns/fp/differenceInCalendarDays' {
@@ -7072,6 +7133,11 @@ declare module 'date-fns/fp/subBusinessDays' {
   export default subBusinessDays
 }
 
+declare module 'date-fns/fp/subBusinessDaysWithOptions' {
+  import { subBusinessDaysWithOptions } from 'date-fns/fp'
+  export default subBusinessDaysWithOptions
+}
+
 declare module 'date-fns/fp/subDays' {
   import { subDays } from 'date-fns/fp'
   export default subDays
@@ -7150,6 +7216,11 @@ declare module 'date-fns/fp/add/index' {
 declare module 'date-fns/fp/addBusinessDays/index' {
   import { addBusinessDays } from 'date-fns/fp'
   export default addBusinessDays
+}
+
+declare module 'date-fns/fp/addBusinessDaysWithOptions/index' {
+  import { addBusinessDaysWithOptions } from 'date-fns/fp'
+  export default addBusinessDaysWithOptions
 }
 
 declare module 'date-fns/fp/addDays/index' {
@@ -7245,6 +7316,11 @@ declare module 'date-fns/fp/daysToWeeks/index' {
 declare module 'date-fns/fp/differenceInBusinessDays/index' {
   import { differenceInBusinessDays } from 'date-fns/fp'
   export default differenceInBusinessDays
+}
+
+declare module 'date-fns/fp/differenceInBusinessDaysWithOptions/index' {
+  import { differenceInBusinessDaysWithOptions } from 'date-fns/fp'
+  export default differenceInBusinessDaysWithOptions
 }
 
 declare module 'date-fns/fp/differenceInCalendarDays/index' {
@@ -8332,6 +8408,11 @@ declare module 'date-fns/fp/subBusinessDays/index' {
   export default subBusinessDays
 }
 
+declare module 'date-fns/fp/subBusinessDaysWithOptions/index' {
+  import { subBusinessDaysWithOptions } from 'date-fns/fp'
+  export default subBusinessDaysWithOptions
+}
+
 declare module 'date-fns/fp/subDays/index' {
   import { subDays } from 'date-fns/fp'
   export default subDays
@@ -8410,6 +8491,11 @@ declare module 'date-fns/fp/add/index.js' {
 declare module 'date-fns/fp/addBusinessDays/index.js' {
   import { addBusinessDays } from 'date-fns/fp'
   export default addBusinessDays
+}
+
+declare module 'date-fns/fp/addBusinessDaysWithOptions/index.js' {
+  import { addBusinessDaysWithOptions } from 'date-fns/fp'
+  export default addBusinessDaysWithOptions
 }
 
 declare module 'date-fns/fp/addDays/index.js' {
@@ -8505,6 +8591,11 @@ declare module 'date-fns/fp/daysToWeeks/index.js' {
 declare module 'date-fns/fp/differenceInBusinessDays/index.js' {
   import { differenceInBusinessDays } from 'date-fns/fp'
   export default differenceInBusinessDays
+}
+
+declare module 'date-fns/fp/differenceInBusinessDaysWithOptions/index.js' {
+  import { differenceInBusinessDaysWithOptions } from 'date-fns/fp'
+  export default differenceInBusinessDaysWithOptions
 }
 
 declare module 'date-fns/fp/differenceInCalendarDays/index.js' {
@@ -9592,6 +9683,11 @@ declare module 'date-fns/fp/subBusinessDays/index.js' {
   export default subBusinessDays
 }
 
+declare module 'date-fns/fp/subBusinessDaysWithOptions/index.js' {
+  import { subBusinessDaysWithOptions } from 'date-fns/fp'
+  export default subBusinessDaysWithOptions
+}
+
 declare module 'date-fns/fp/subDays/index.js' {
   import { subDays } from 'date-fns/fp'
   export default subDays
@@ -9668,7 +9764,14 @@ declare module 'date-fns/esm' {
   function add(date: Date | number, duration: Duration): Date
   namespace add {}
 
-  function addBusinessDays(date: Date | number, amount: number): Date
+  function addBusinessDays(
+    date: Date | number,
+    amount: number,
+    options?: {
+      businessDays?: number[]
+      exceptions?: Record<string, boolean>
+    }
+  ): Date
   namespace addBusinessDays {}
 
   function addDays(date: Date | number, amount: number): Date
@@ -9739,7 +9842,11 @@ declare module 'date-fns/esm' {
 
   function differenceInBusinessDays(
     dateLeft: Date | number,
-    dateRight: Date | number
+    dateRight: Date | number,
+    options?: {
+      businessDays?: number[]
+      exceptions?: Record<string, boolean>
+    }
   ): number
   namespace differenceInBusinessDays {}
 
@@ -10697,7 +10804,14 @@ declare module 'date-fns/esm' {
   function sub(date: Date | number, duration: Duration): Date
   namespace sub {}
 
-  function subBusinessDays(date: Date | number, amount: number): Date
+  function subBusinessDays(
+    date: Date | number,
+    amount: number,
+    options?: {
+      businessDays?: number[]
+      exceptions?: Record<string, boolean>
+    }
+  ): Date
   namespace subBusinessDays {}
 
   function subDays(date: Date | number, amount: number): Date
@@ -14316,6 +14430,17 @@ declare module 'date-fns/esm/fp' {
   const addBusinessDays: CurriedFn2<number, Date | number, Date>
   namespace addBusinessDays {}
 
+  const addBusinessDaysWithOptions: CurriedFn3<
+    {
+      exceptions?: Record<string, boolean>
+      businessDays?: number[]
+    },
+    number,
+    Date | number,
+    Date
+  >
+  namespace addBusinessDaysWithOptions {}
+
   const addDays: CurriedFn2<number, Date | number, Date>
   namespace addDays {}
 
@@ -14391,6 +14516,17 @@ declare module 'date-fns/esm/fp' {
     number
   >
   namespace differenceInBusinessDays {}
+
+  const differenceInBusinessDaysWithOptions: CurriedFn3<
+    {
+      exceptions?: Record<string, boolean>
+      businessDays?: number[]
+    },
+    Date | number,
+    Date | number,
+    number
+  >
+  namespace differenceInBusinessDaysWithOptions {}
 
   const differenceInCalendarDays: CurriedFn2<
     Date | number,
@@ -15387,6 +15523,17 @@ declare module 'date-fns/esm/fp' {
   const subBusinessDays: CurriedFn2<number, Date | number, Date>
   namespace subBusinessDays {}
 
+  const subBusinessDaysWithOptions: CurriedFn3<
+    {
+      exceptions?: Record<string, boolean>
+      businessDays?: number[]
+    },
+    number,
+    Date | number,
+    Date
+  >
+  namespace subBusinessDaysWithOptions {}
+
   const subDays: CurriedFn2<number, Date | number, Date>
   namespace subDays {}
 
@@ -15462,6 +15609,11 @@ declare module 'date-fns/esm/fp/add' {
 declare module 'date-fns/esm/fp/addBusinessDays' {
   import { addBusinessDays } from 'date-fns/esm/fp'
   export default addBusinessDays
+}
+
+declare module 'date-fns/esm/fp/addBusinessDaysWithOptions' {
+  import { addBusinessDaysWithOptions } from 'date-fns/esm/fp'
+  export default addBusinessDaysWithOptions
 }
 
 declare module 'date-fns/esm/fp/addDays' {
@@ -15557,6 +15709,11 @@ declare module 'date-fns/esm/fp/daysToWeeks' {
 declare module 'date-fns/esm/fp/differenceInBusinessDays' {
   import { differenceInBusinessDays } from 'date-fns/esm/fp'
   export default differenceInBusinessDays
+}
+
+declare module 'date-fns/esm/fp/differenceInBusinessDaysWithOptions' {
+  import { differenceInBusinessDaysWithOptions } from 'date-fns/esm/fp'
+  export default differenceInBusinessDaysWithOptions
 }
 
 declare module 'date-fns/esm/fp/differenceInCalendarDays' {
@@ -16644,6 +16801,11 @@ declare module 'date-fns/esm/fp/subBusinessDays' {
   export default subBusinessDays
 }
 
+declare module 'date-fns/esm/fp/subBusinessDaysWithOptions' {
+  import { subBusinessDaysWithOptions } from 'date-fns/esm/fp'
+  export default subBusinessDaysWithOptions
+}
+
 declare module 'date-fns/esm/fp/subDays' {
   import { subDays } from 'date-fns/esm/fp'
   export default subDays
@@ -16722,6 +16884,11 @@ declare module 'date-fns/esm/fp/add/index' {
 declare module 'date-fns/esm/fp/addBusinessDays/index' {
   import { addBusinessDays } from 'date-fns/esm/fp'
   export default addBusinessDays
+}
+
+declare module 'date-fns/esm/fp/addBusinessDaysWithOptions/index' {
+  import { addBusinessDaysWithOptions } from 'date-fns/esm/fp'
+  export default addBusinessDaysWithOptions
 }
 
 declare module 'date-fns/esm/fp/addDays/index' {
@@ -16817,6 +16984,11 @@ declare module 'date-fns/esm/fp/daysToWeeks/index' {
 declare module 'date-fns/esm/fp/differenceInBusinessDays/index' {
   import { differenceInBusinessDays } from 'date-fns/esm/fp'
   export default differenceInBusinessDays
+}
+
+declare module 'date-fns/esm/fp/differenceInBusinessDaysWithOptions/index' {
+  import { differenceInBusinessDaysWithOptions } from 'date-fns/esm/fp'
+  export default differenceInBusinessDaysWithOptions
 }
 
 declare module 'date-fns/esm/fp/differenceInCalendarDays/index' {
@@ -17904,6 +18076,11 @@ declare module 'date-fns/esm/fp/subBusinessDays/index' {
   export default subBusinessDays
 }
 
+declare module 'date-fns/esm/fp/subBusinessDaysWithOptions/index' {
+  import { subBusinessDaysWithOptions } from 'date-fns/esm/fp'
+  export default subBusinessDaysWithOptions
+}
+
 declare module 'date-fns/esm/fp/subDays/index' {
   import { subDays } from 'date-fns/esm/fp'
   export default subDays
@@ -17982,6 +18159,11 @@ declare module 'date-fns/esm/fp/add/index.js' {
 declare module 'date-fns/esm/fp/addBusinessDays/index.js' {
   import { addBusinessDays } from 'date-fns/esm/fp'
   export default addBusinessDays
+}
+
+declare module 'date-fns/esm/fp/addBusinessDaysWithOptions/index.js' {
+  import { addBusinessDaysWithOptions } from 'date-fns/esm/fp'
+  export default addBusinessDaysWithOptions
 }
 
 declare module 'date-fns/esm/fp/addDays/index.js' {
@@ -18077,6 +18259,11 @@ declare module 'date-fns/esm/fp/daysToWeeks/index.js' {
 declare module 'date-fns/esm/fp/differenceInBusinessDays/index.js' {
   import { differenceInBusinessDays } from 'date-fns/esm/fp'
   export default differenceInBusinessDays
+}
+
+declare module 'date-fns/esm/fp/differenceInBusinessDaysWithOptions/index.js' {
+  import { differenceInBusinessDaysWithOptions } from 'date-fns/esm/fp'
+  export default differenceInBusinessDaysWithOptions
 }
 
 declare module 'date-fns/esm/fp/differenceInCalendarDays/index.js' {
@@ -19162,6 +19349,11 @@ declare module 'date-fns/esm/fp/sub/index.js' {
 declare module 'date-fns/esm/fp/subBusinessDays/index.js' {
   import { subBusinessDays } from 'date-fns/esm/fp'
   export default subBusinessDays
+}
+
+declare module 'date-fns/esm/fp/subBusinessDaysWithOptions/index.js' {
+  import { subBusinessDaysWithOptions } from 'date-fns/esm/fp'
+  export default subBusinessDaysWithOptions
 }
 
 declare module 'date-fns/esm/fp/subDays/index.js' {
@@ -22523,7 +22715,14 @@ declare module 'date-fns/esm/locale/zh-TW/index.js' {
 interface dateFns {
   add(date: Date | number, duration: Duration): Date
 
-  addBusinessDays(date: Date | number, amount: number): Date
+  addBusinessDays(
+    date: Date | number,
+    amount: number,
+    options?: {
+      businessDays?: number[]
+      exceptions?: Record<string, boolean>
+    }
+  ): Date
 
   addDays(date: Date | number, amount: number): Date
 
@@ -22573,7 +22772,11 @@ interface dateFns {
 
   differenceInBusinessDays(
     dateLeft: Date | number,
-    dateRight: Date | number
+    dateRight: Date | number,
+    options?: {
+      businessDays?: number[]
+      exceptions?: Record<string, boolean>
+    }
   ): number
 
   differenceInCalendarDays(
@@ -23296,7 +23499,14 @@ interface dateFns {
 
   sub(date: Date | number, duration: Duration): Date
 
-  subBusinessDays(date: Date | number, amount: number): Date
+  subBusinessDays(
+    date: Date | number,
+    amount: number,
+    options?: {
+      businessDays?: number[]
+      exceptions?: Record<string, boolean>
+    }
+  ): Date
 
   subDays(date: Date | number, amount: number): Date
 
