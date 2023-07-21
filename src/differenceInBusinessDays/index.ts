@@ -68,6 +68,7 @@ export default function differenceInBusinessDays(
     exceptions?: Record<string, boolean>
   }
 ): number {
+
   const options = dirtyOptions || {}
   const businessDays = options.businessDays || [1, 2, 3, 4, 5]
 
@@ -92,6 +93,7 @@ export default function differenceInBusinessDays(
   }
 
   const weeks = Math.trunc(calendarDifference / 7)
+
 
   let result = weeks * businessDays.length
   let newDateRight = addDays(dateRight, weeks * 7)
