@@ -1,6 +1,4 @@
-import toInteger from '../_lib/toInteger/index'
 import addBusinessDays from '../addBusinessDays/index'
-import requiredArgs from '../_lib/requiredArgs/index'
 
 /**
  * @name subBusinessDays
@@ -26,15 +24,12 @@ import requiredArgs from '../_lib/requiredArgs/index'
  */
 export default function subBusinessDays(
   dirtyDate: Date | number,
-  dirtyAmount: number,
+  amount: number,
   dirtyOptions?: {
     businessDays?: number[]
     exceptions?: Record<string, boolean>
   }
 ) {
-  requiredArgs(2, arguments)
-
-  const amount = toInteger(dirtyAmount)
   const options = dirtyOptions || {}
   const businessDays = options.businessDays || [1, 2, 3, 4, 5]
   const exceptions = options.exceptions || {}

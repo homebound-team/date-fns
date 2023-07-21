@@ -26,7 +26,7 @@ import format from '../format/index'
 
 export default function addBusinessDays(
   dirtyDate: Date | number,
-  amount: number,
+  dirtyAmount: number,
   dirtyOptions?: {
     businessDays?: number[]
     exceptions?: Record<string, boolean>
@@ -35,6 +35,8 @@ export default function addBusinessDays(
   const options = dirtyOptions || {}
   const exceptions = options.exceptions || {}
   const businessDays = options.businessDays || [1, 2, 3, 4, 5]
+  const amount =
+    dirtyAmount > 0 ? Math.floor(dirtyAmount) : Math.ceil(dirtyAmount)
 
   // Throw a RangeError if businessDays includes a number greater than 6
   if (businessDays?.filter((number) => number > 6).length > 0) {
