@@ -1,4 +1,3 @@
-import toInteger from '../_lib/toInteger/index'
 import addBusinessDays from '../addBusinessDays/index'
 
 /**
@@ -31,7 +30,6 @@ export default function subBusinessDays(
     exceptions?: Record<string, boolean>
   }
 ) {
-
   const options = dirtyOptions || {}
   const businessDays = options.businessDays || [1, 2, 3, 4, 5]
   const exceptions = options.exceptions || {}
