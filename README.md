@@ -82,6 +82,7 @@ does not automatically trigger a new patch publish (see [below](#publishing-the-
 
 ### Publishing the Patch Package
 
+
 There are two distinct cases you might want to trigger a new package publish:
 
 1. If you've made changes on the `improved-business-days` branch and want to release them.
