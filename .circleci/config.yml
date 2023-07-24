@@ -1,0 +1,40 @@
+version: 2.1
+
+orbs:
+  node: circleci/node@5.0.0
+
+node-image: &node-image
+  image: cimg/node:14.16.0
+  auth:
+    username: $DOCKERHUB_USERNAME
+    password: $DOCKERHUB_ACCESS_TOKEN
+
+workflows:
+  version: 2
+  workflow:
+    jobs:
+      - build:
+          context:
+            - dockerhub
+            - npm-publish
+          filters:
+            branches:
+              only:
+                - homebound-patch-publish
+
+jobs:
+  build:
+    docker:
+      - <<: *node-image
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - '92:4f:71:a8:fd:a2:99:e1:87:13:0e:7e:b5:ec:4e:a2'
+      - checkout
+      - run: 'echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> $HOME/.npmrc'
+      - run:
+          command: ./scripts/homebound-publish-patch.sh improved-business-days
+          environment:
+            GIT_AUTHOR_NAME: Circle CI
+            GIT_COMMITTER_NAME: Circle CI
+            EMAIL: eng@homebound.com
